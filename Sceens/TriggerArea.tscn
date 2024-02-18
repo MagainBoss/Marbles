@@ -1,0 +1,128 @@
+[gd_scene load_steps=10 format=3 uid="uid://mcopfriks2m1"]
+
+[ext_resource type="Script" path="res://Sceens/Scripts/TriggerArea.gd" id="1_8o5x0"]
+[ext_resource type="Texture2D" uid="uid://5furdtf5mpuk" path="res://Resources/TriggerArea.png" id="1_usx6j"]
+[ext_resource type="PackedScene" uid="uid://sxkwwccipj3r" path="res://Sceens/marble.tscn" id="3_e5pjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1lmx"]
+size = Vector2(480, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebucx"]
+size = Vector2(20, 540)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggav3"]
+size = Vector2(20, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6e71"]
+radius = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18ddu"]
+size = Vector2(210, 70)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5w7wg"]
+font_size = 50
+
+[node name="TriggerArea" type="StaticBody2D"]
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+self_modulate = Color(0.568627, 0.568627, 0.568627, 1)
+script = ExtResource("1_8o5x0")
+MarbleScene = ExtResource("3_e5pjm")
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_usx6j")
+
+[node name="Top" type="CollisionShape2D" parent="."]
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+self_modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(240, 10)
+shape = SubResource("RectangleShape2D_w1lmx")
+
+[node name="Bottom" type="CollisionShape2D" parent="."]
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(240, 530)
+shape = SubResource("RectangleShape2D_w1lmx")
+
+[node name="Left" type="CollisionShape2D" parent="."]
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(10, 270)
+shape = SubResource("RectangleShape2D_ebucx")
+
+[node name="Right" type="CollisionShape2D" parent="."]
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(470, 270)
+shape = SubResource("RectangleShape2D_ebucx")
+
+[node name="Middle" type="CollisionShape2D" parent="."]
+position = Vector2(240, 480)
+shape = SubResource("RectangleShape2D_ggav3")
+
+[node name="Circle" type="CollisionShape2D" parent="."]
+position = Vector2(81, 111)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="Circle2" type="CollisionShape2D" parent="."]
+position = Vector2(172, 201)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="Circle3" type="CollisionShape2D" parent="."]
+position = Vector2(81, 290)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="Circle4" type="CollisionShape2D" parent="."]
+position = Vector2(172, 350)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="Circle5" type="CollisionShape2D" parent="."]
+position = Vector2(288, 310)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="Circle6" type="CollisionShape2D" parent="."]
+position = Vector2(308, 230)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="Circle7" type="CollisionShape2D" parent="."]
+position = Vector2(376, 131)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="Circle8" type="CollisionShape2D" parent="."]
+position = Vector2(430, 250)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="Circle9" type="CollisionShape2D" parent="."]
+position = Vector2(390, 370)
+shape = SubResource("CircleShape2D_h6e71")
+
+[node name="MultiTrigger" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MultiTrigger"]
+position = Vector2(125, 485)
+shape = SubResource("RectangleShape2D_18ddu")
+
+[node name="ReleaTrigger" type="Area2D" parent="."]
+position = Vector2(230, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaTrigger"]
+position = Vector2(125, 485)
+shape = SubResource("RectangleShape2D_18ddu")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(250, 86)
+
+[node name="Count" type="Label" parent="."]
+offset_left = 28.0
+offset_top = 182.0
+offset_right = 457.0
+offset_bottom = 381.0
+text = "1"
+label_settings = SubResource("LabelSettings_5w7wg")
+horizontal_alignment = 1
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 20.0
+
+[connection signal="area_entered" from="MultiTrigger" to="." method="_on_multi_trigger_area_entered"]
+[connection signal="area_entered" from="ReleaTrigger" to="." method="_on_relea_trigger_area_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
