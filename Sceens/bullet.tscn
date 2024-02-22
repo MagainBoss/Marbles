@@ -5,27 +5,37 @@
 [ext_resource type="PhysicsMaterial" uid="uid://dmc8ljxbv0rj5" path="res://Bouncy.tres" id="1_phy4h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i4bvb"]
-radius = 5.0
+radius = 20.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7la0f"]
-radius = 5.0
+[sub_resource type="LabelSettings" id="LabelSettings_prmgp"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Bullet" type="RigidBody2D"]
 top_level = true
+collision_layer = 129
+collision_mask = 129
 physics_material_override = ExtResource("1_phy4h")
 gravity_scale = 0.0
+custom_integrator = true
 script = ExtResource("1_084q2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.1, 0.1)
 shape = SubResource("CircleShape2D_i4bvb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3, 3)
-scale = Vector2(0.25, 0.25)
+position = Vector2(1.24, 1.24)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_d7gxo")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 7
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_7la0f")
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+text = "0"
+label_settings = SubResource("LabelSettings_prmgp")
+horizontal_alignment = 1
+vertical_alignment = 1

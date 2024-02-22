@@ -14,20 +14,52 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if rotation >= initRotation+PI/2+PI/16:
+	#if $"..".bulletLeft > 0:
+		#var bullet = BulletScene.instantiate()
+		#bullet.player = player
+		#bullet.position = position+Vector2(40*cos(rotation),40*sin(rotation))
+		#bullet.hp = $"..".bulletLeft
+		#bullet.mass = log(bullet.hp)+1
+		#bullet.force = Vector2(100*cos(rotation),100*sin(rotation))*bullet.mass
+		#$"..".bulletLeft = 0
+		#$"../..".add_child(bullet)
+
+	#while $"..".bulletLeft > 0:
+		#var bullet = BulletScene.instantiate()
+		#bullet.player = player
+		#bullet.position = position+Vector2(40*cos(rotation),40*sin(rotation))
+		#bullet.hp = 1
+		#bullet.mass = log(bullet.hp)+1
+		#bullet.force = Vector2(100*cos(rotation),100*sin(rotation))*bullet.mass
+		#$"../..".add_child(bullet)
+		#$"..".bulletLeft -=1
+
+	if rotation >= initRotation+PI/2:
 		dire = -1
-	elif  rotation <= initRotation-PI/16:
+	elif  rotation <= initRotation:
 		dire = 1
 	rotate(PI/2*delta*dire)
-	
+
 	pass
+
 
 
 func _on_timer_timeout():
 	if $"..".bulletLeft > 0:
-		$"..".bulletLeft -= 1
 		var bullet = BulletScene.instantiate()
 		bullet.player = player
-		bullet.force = Vector2(200*cos(rotation),200*sin(rotation))
-		bullet.position = position
-		$"..".add_child(bullet)
+		bullet.position = position+Vector2(40*cos(rotation),40*sin(rotation))
+		bullet.hp = 1
+		bullet.mass = log(bullet.hp)+1
+		bullet.force = Vector2(100*cos(rotation),100*sin(rotation))*bullet.mass
+		$"../..".add_child(bullet)
+		$"..".bulletLeft -=1
+	pass # Replace with function body.
+
+
+func _on_body_entered(body):
+	var bulletPlayer = body.player
+	if bulletPlayer != player:
+		body.hp -= 1
+		get_parent().queue_free()
+	pass # Replace with function body.

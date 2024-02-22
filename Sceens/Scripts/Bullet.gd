@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var used:bool
+@export var hp:int
 @export var player:int = 0
 @export var force:Vector2
 var st:int
@@ -8,12 +8,6 @@ var st:int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	st = 1
-	used = false
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
 	match player:
 		1:
 			$Sprite2D.texture = load("res://Resources/MarbleRed.png")
@@ -23,8 +17,17 @@ func _process(delta):
 			$Sprite2D.texture = load("res://Resources/MarbleYellow.png")
 		4:
 			$Sprite2D.texture = load("res://Resources/MarbleBlue.png")
-	if used:
+
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	#$Label.text = str(hp)
+	if hp <= 0:
 		queue_free()
+		return
+	mass = log(hp)+1
 
 
 func _integrate_forces(state):

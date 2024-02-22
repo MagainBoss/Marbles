@@ -1,17 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cn7utu81se4j"]
+[gd_scene load_steps=9 format=3 uid="uid://cn7utu81se4j"]
 
 [ext_resource type="PackedScene" uid="uid://mcopfriks2m1" path="res://Sceens/TriggerArea.tscn" id="1_76tc2"]
 [ext_resource type="Script" path="res://Sceens/Scripts/Main.gd" id="1_76y6k"]
 [ext_resource type="PackedScene" uid="uid://cvcvlxk0qvkrp" path="res://Sceens/block.tscn" id="2_potqo"]
-[ext_resource type="PackedScene" uid="uid://5noon6erulql" path="res://Sceens/bullet.tscn" id="4_7qql0"]
-[ext_resource type="Script" path="res://Sceens/Scripts/Cannon.gd" id="4_d04r6"]
-[ext_resource type="Texture2D" uid="uid://duoo3k8dntr7j" path="res://Resources/Cannon.png" id="4_nrjxh"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ba7d6"]
-radius = 20.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x47b2"]
-size = Vector2(23, 18)
+[ext_resource type="PackedScene" uid="uid://df7d27v81gpac" path="res://Sceens/Cannon.tscn" id="4_jpdpc"]
+[ext_resource type="PhysicsMaterial" uid="uid://dmc8ljxbv0rj5" path="res://Bouncy.tres" id="7_52i6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdy4k"]
 size = Vector2(960, 20)
@@ -28,120 +21,43 @@ blockScene = ExtResource("2_potqo")
 
 [node name="Frame1" parent="." instance=ExtResource("1_76tc2")]
 
-[node name="Cannon1" type="Area2D" parent="Frame1"]
-top_level = true
-position = Vector2(500, 20)
-collision_layer = 2
-script = ExtResource("4_d04r6")
-BulletScene = ExtResource("4_7qql0")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Frame1/Cannon1"]
-scale = Vector2(2, 2)
-texture = ExtResource("4_nrjxh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame1/Cannon1"]
-shape = SubResource("CircleShape2D_ba7d6")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Frame1/Cannon1"]
-position = Vector2(27.5, 0)
-shape = SubResource("RectangleShape2D_x47b2")
-
-[node name="Timer" type="Timer" parent="Frame1/Cannon1"]
-wait_time = 0.05
-autostart = true
+[node name="Cannon" parent="Frame1" instance=ExtResource("4_jpdpc")]
+position = Vector2(490, 10)
 
 [node name="Frame2" parent="." instance=ExtResource("1_76tc2")]
 position = Vector2(0, 540)
 player = 2
 
-[node name="Cannon2" type="Area2D" parent="Frame2"]
-top_level = true
-position = Vector2(500, 1060)
+[node name="Cannon" parent="Frame2" instance=ExtResource("4_jpdpc")]
+position = Vector2(490, 1070)
 rotation = -1.5708
-collision_layer = 2
-script = ExtResource("4_d04r6")
 player = 2
-BulletScene = ExtResource("4_7qql0")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Frame2/Cannon2"]
-scale = Vector2(2, 2)
-texture = ExtResource("4_nrjxh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame2/Cannon2"]
-shape = SubResource("CircleShape2D_ba7d6")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Frame2/Cannon2"]
-position = Vector2(27, 0)
-shape = SubResource("RectangleShape2D_x47b2")
-
-[node name="Timer" type="Timer" parent="Frame2/Cannon2"]
-wait_time = 0.05
-autostart = true
 
 [node name="Frame3" parent="." instance=ExtResource("1_76tc2")]
 position = Vector2(1440, 0)
 player = 3
 
-[node name="Cannon3" type="Area2D" parent="Frame3"]
-top_level = true
-position = Vector2(1420, 20)
+[node name="Cannon" parent="Frame3" instance=ExtResource("4_jpdpc")]
+position = Vector2(1430, 10)
 rotation = 1.5708
-collision_layer = 2
-script = ExtResource("4_d04r6")
 player = 3
-BulletScene = ExtResource("4_7qql0")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Frame3/Cannon3"]
-scale = Vector2(2, 2)
-texture = ExtResource("4_nrjxh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame3/Cannon3"]
-shape = SubResource("CircleShape2D_ba7d6")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Frame3/Cannon3"]
-position = Vector2(27, -6.01032e-07)
-shape = SubResource("RectangleShape2D_x47b2")
-
-[node name="Timer" type="Timer" parent="Frame3/Cannon3"]
-wait_time = 0.05
-autostart = true
 
 [node name="Frame4" parent="." instance=ExtResource("1_76tc2")]
 position = Vector2(1440, 540)
 player = 4
 
-[node name="Cannon4" type="Area2D" parent="Frame4"]
-top_level = true
-position = Vector2(1420, 1060)
-rotation = -3.14159
-collision_layer = 2
-script = ExtResource("4_d04r6")
+[node name="Cannon" parent="Frame4" instance=ExtResource("4_jpdpc")]
+position = Vector2(1430, 1070)
+rotation = 3.14159
 player = 4
-BulletScene = ExtResource("4_7qql0")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Frame4/Cannon4"]
-scale = Vector2(2, 2)
-texture = ExtResource("4_nrjxh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame4/Cannon4"]
-shape = SubResource("CircleShape2D_ba7d6")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Frame4/Cannon4"]
-position = Vector2(27, 0)
-shape = SubResource("RectangleShape2D_x47b2")
-
-[node name="Timer" type="Timer" parent="Frame4/Cannon4"]
-wait_time = 0.05
-autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
 [node name="Limiter" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+physics_material_override = ExtResource("7_52i6u")
 
 [node name="Top" type="CollisionShape2D" parent="Limiter"]
 position = Vector2(960, -10)
@@ -162,12 +78,3 @@ modulate = Color(0.568627, 0.568627, 0.568627, 1)
 self_modulate = Color(0.568627, 0.568627, 0.568627, 1)
 position = Vector2(1450, 540)
 shape = SubResource("RectangleShape2D_bdth4")
-
-[connection signal="area_entered" from="Frame1/Cannon1" to="Frame1" method="_on_cannon_1_area_entered"]
-[connection signal="timeout" from="Frame1/Cannon1/Timer" to="Frame1/Cannon1" method="_on_timer_timeout"]
-[connection signal="area_entered" from="Frame2/Cannon2" to="Frame2" method="_on_cannon_2_area_entered"]
-[connection signal="timeout" from="Frame2/Cannon2/Timer" to="Frame2/Cannon2" method="_on_timer_timeout"]
-[connection signal="area_entered" from="Frame3/Cannon3" to="Frame3" method="_on_cannon_3_area_entered"]
-[connection signal="timeout" from="Frame3/Cannon3/Timer" to="Frame3/Cannon3" method="_on_timer_timeout"]
-[connection signal="area_entered" from="Frame4/Cannon4" to="Frame4" method="_on_cannon_4_area_entered"]
-[connection signal="timeout" from="Frame4/Cannon4/Timer" to="Frame4/Cannon4" method="_on_timer_timeout"]

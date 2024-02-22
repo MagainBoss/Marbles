@@ -7,13 +7,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_00dn7"]
 radius = 20.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wsnmk"]
-radius = 20.0
+[sub_resource type="LabelSettings" id="LabelSettings_qkvul"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Marble" type="RigidBody2D"]
+collision_layer = 96
+collision_mask = 160
 physics_material_override = ExtResource("1_8gv2c")
+lock_rotation = true
 script = ExtResource("2_qrge1")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_00dn7")
@@ -22,7 +25,12 @@ shape = SubResource("CircleShape2D_00dn7")
 position = Vector2(12, 12)
 texture = ExtResource("3_na8f0")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_wsnmk")
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+text = "1"
+label_settings = SubResource("LabelSettings_qkvul")
+horizontal_alignment = 1
+vertical_alignment = 1
